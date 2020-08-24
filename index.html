@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Intro Component</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="shortcut icon" href="./assets/favicon-32x32.png" type="image/x-icon">
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="text">
+            <h1 class="text__title">Learn to code by watching others</h1>
+            <p class="text__paragraph"> See how experienced developers solve problems in real-time. Watching scripted
+                tutorials is great, but understanding how developers think is invaluable. </p>
+        </div>
+
+        <div class="wrapper">
+            <div class="discount">
+                <span class="discount__text">Try it free 7 days <span class="discount__text--gray">then $20/mo.
+                        thereafter</span></span>
+            </div>
+
+            <div class="form">
+                <div class="form__box">
+                    <input class="form__input" type="text" placeholder="First Name">
+                </div>
+                <span class="form__error">First Name cannot be ampty</span>
+
+                <div class="form__box">
+                    <input class="form__input" type="text" placeholder="Last Name">
+                </div>
+                <span class="form__error">Last Name cannot be ampty</span>
+
+                <div class="form__box">
+                    <input class="form__input" type="text" placeholder="Email Address">
+                </div>
+                <span class="form__error">Looks like this is not an email</span>
+
+                <div class="form__box">
+                    <input class="form__input" type="password" placeholder="Password">
+                </div>
+                <span class="form__error">Password cannot be empty</span>
+
+                <a href="#" class="form__button">Claim your free trial </a>
+
+                <small class="form__terms">By clicking the button, you are agreeing to our <a href="#"
+                        class="form__terms--red">Terms and Services</a></small>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        window.onload = () => {
+            let formBox = document.querySelectorAll(".form__box");
+
+            formBox.forEach((box) => {
+                let icon = document.createElement("img")
+                icon.setAttribute("src", "./assets/icon-error.svg");
+
+                icon.classList.add("error-icon")
+
+                box.appendChild(icon)
+            })
+        }
+
+        function validate() {
+
+            let parent = this.parentElement.nextElementSibling;
+            let icon = this.nextElementSibling;
+            console.log(this)
+
+            if (this.value === "") {
+                icon.classList.add("show")
+                parent.classList.add("show")
+
+                this.style.borderColor = "var(--red)";
+
+            } else {
+                this.style.borderColor = "var(--grayBlue)";
+
+                icon.classList.remove("show")
+                parent.classList.remove("show")
+            }
+
+
+        }
+
+        let inputs = document.querySelectorAll(".form__input");
+
+        inputs.forEach(input =>
+            input.addEventListener("blur", validate)
+        )
+    </script>
+
+</body>
+
+</html>
